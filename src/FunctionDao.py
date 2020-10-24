@@ -17,7 +17,7 @@ def func2(inputData):
     #inputDataを使ってdriverでブラウザを操作するスクリプト
     return
 
-def func3(inputData, driver):
+def func3(inputData, driver):#楽天競馬ログイン
     pushButton('//*[@id="noBalanceStatus"]/a',driver)
     handle_array = driver.window_handles
     driver.switch_to.window(handle_array[1])
