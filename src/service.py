@@ -1,9 +1,8 @@
-import FunctionDao
-import UrlDao
-import keyDao
-import Interface
-import Driver
-
+from FunctionDao import FunctionDao
+from UrlDao import UrlDao
+from KeyDao import KeyDao
+from Interface import Interface
+from Driver import Driver
 
 class Service:
 
@@ -32,19 +31,19 @@ class Service:
         url = urlDao.getUrl(functionName)
 
         #ブラウザを動かすクラスに処理を実行させる
-        driver = Driver(url, function, inputData)
+        driver_chrome = Driver(url, function, inputData)
 
         #ウインドウの表示
-        driver.open()
+        driver_chrome.open()
         #プロキシサーバへのログイン？？
-        driver.proxyLogin()
+        #driver_chrome.proxyLogin()
         #機能サイトへのログイン？？
-        driver.login()
+        #driver_chrome.login()
         #機能の実行
-        dirver.do()
+        driver_chrome.do()
 
         #機能の終了
-        driver.end()
+        #driver_chrome.end()
         
         return
 
