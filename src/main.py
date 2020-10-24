@@ -1,7 +1,8 @@
 import service
 
 def call(functionName):
-    service.execution(functionName)
+    service = Service(functionName)
+    service.execution()
     return
 
 

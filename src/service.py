@@ -1,30 +1,29 @@
-import functionDao
-import urlDao
-import driver
+import FunctionDao
+import UrlDao
+import keyDao
+import Interface
+import Driver
 
 
-class service:
+class Service:
 
     def __init__(self):
-
-        self.functionDao = functionDao
-        self.urlDao = urlDao
-        self.driver = driver
-        self.interface = interface
-
         return
-
 
     def execution(self, functionName):
 
-        functionDao = self.functionDao
-        urlDao = self.urlDao
-        interface = self.interface
-        driver = self.driver
+        #必要なインスタンスの生成
+        functionDao = FunctionDao() #機能ごとに関数を引っ張ってくる。
+        urlDao = UrlDao() #機能ごとにアクセスするurlを引っ張ってくる。
+        interface = Interface() #必要なデータを受け取る窓口
+        keyDao = KeyDao() #機能ごとに必要な項目を引っ張ってくる。
 
-        #機能に必要な入力画面の呼び出し
-        interface.input(functionName)
-        inputData = interface.data
+        #入力項目の取得
+        keys = keyDao.getKeys(functionName)
+
+        #機能に必要な入力画面を呼び出し、入力値を受け取る
+        interface.input(keys)
+        inputData = interface.inputData
         
         #機能を実行できる関数を取ってくる
         function = functionDao.getFunction(functionName)
@@ -33,14 +32,16 @@ class service:
         url = urlDao.getUrl(functionName)
 
         #ブラウザを動かすクラスに処理を実行させる
+        driver = Driver(url, function, inputData)
+
         #ウインドウの表示
-        driver.open(url)
+        driver.open()
         #プロキシサーバへのログイン？？
-        driver.proxyLogin(function)
+        driver.proxyLogin()
         #機能サイトへのログイン？？
-        driver.login(function)
+        driver.login()
         #機能の実行
-        dirver.do(function, inputData)
+        dirver.do()
 
         #機能の終了
         driver.end()
