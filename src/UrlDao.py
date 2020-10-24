@@ -1,9 +1,9 @@
-class FunctionDao:
+class UrlDao:
 
     def __init__(self):
         return
 
-    def getUrl(functionName):
+    def getUrl(self,functionName):
         return table[functionName]
 
 

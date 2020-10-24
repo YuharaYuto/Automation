@@ -5,7 +5,7 @@ class FunctionDao:
     def __init__(self):
         return
 
-    def getFunction(functionName):
+    def getFunction(self, functionName):
         return table[functionName]
 
 

@@ -24,6 +24,7 @@ class Driver:
     def open(self):
         driver = self.driver
         #chrome driverで操作
+        driver.get(self.url)
         return 
 
     def close(self):

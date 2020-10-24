@@ -3,7 +3,7 @@ class KeyDao:
     def __init__(self):
         return
 
-    def getKeys(functionName):
+    def getKeys(self,functionName):
         return table[functionName]
 
 
