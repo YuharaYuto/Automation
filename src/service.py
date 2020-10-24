@@ -35,16 +35,16 @@ class Service:
         driver = Driver(url, function, inputData)
 
         #ウインドウの表示
-        driver.open()
+        #driver.open()
         #プロキシサーバへのログイン？？
-        driver.proxyLogin()
+        #driver.proxyLogin()
         #機能サイトへのログイン？？
-        driver.login()
+        #driver.login()
         #機能の実行
         dirver.do()
 
         #機能の終了
-        driver.end()
+        #driver.end()
         
         return
 
