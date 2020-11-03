@@ -27,10 +27,38 @@ def func3(inputData, driver):#楽天競馬ログイン
     pushButton('//*[@id="loginInner"]/p[1]/input',driver)
     pass
 
+def ngate(inputData, driver): #ngate一括申請
+    #自分でログインしてください。
+    print("自分でログインしてください")
+    #実行します(enterボタン)
+    i = input("実行します。y/n")
+    if(i == "n" or i == "N"):
+        pass
+    elif(i == "y" or i == "Y"):
+        pushButton()#必要なボタンを押す
+        pushButton()#必要なボタンを押す
+        year = inputData["年(西暦)"]
+        month = inputData["月"]
+        dates = [0,31,28,31,30,31,30,31,31,30,31,30,31]
+        date = dates[month]
+        if(dates == 2 & (year%4 == 0 or (year%100 != 0 & year%400 == 0))):
+            date += 1
+        for day in range(1,date,2):
+            if(day == dates):
+                InputInfo(,day)
+                InputInfo(,day)
+            else:
+                InputInfo(,10000*year + 100*month + day)
+                InputIndo(,10000*year + 100*month +day+1)
+            InputInfo(,"0000")
+            InputInfo(,"0000")
+            pushButton()#必要なボタンを押す
+
 table  = {
     "一括申請" : func1,
     "入館申請" : func2,
-    "test楽天競馬ログイン":func3
+    "test楽天競馬ログイン":func3,
+    "n-gate一括申請":ngate
 }
 
 
