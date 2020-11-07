@@ -1,5 +1,5 @@
-from abc import ABCMEta, abstractmethod
-from UserIntereface import UserIntereface
+from abc import ABCMeta, abstractmethod
+from UserInterface import UserInterface
 from DriverImple import DriverImple
 
 class Func(metaclass=ABCMeta):
@@ -21,9 +21,9 @@ class Func(metaclass=ABCMeta):
         pass
 
     def exec(self):
-        openPage()
-        doFunc()
-        closePAge()
+        self.openPage()
+        self.doFunc()
+        self.closePage()
         pass
 
     

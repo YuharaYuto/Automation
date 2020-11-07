@@ -1,12 +1,12 @@
-from abc import ABCMEta, abstractmethod
+from abc import ABCMeta, abstractmethod
 
 class Driver(metaclass=ABCMeta):
 
     def __init__(self):
-        
+        pass
 
     @abstractmethod
-    def openBrowserAndAccess(self, url):
+    def access(self, url):
         pass
 
     @abstractmethod
@@ -14,7 +14,11 @@ class Driver(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def inputData(self, XPath):
+    def notCloseAndEnd(self):
+        pass
+
+    @abstractmethod
+    def inputInfo(self, XPath, info):
         pass
 
     @abstractmethod
@@ -25,3 +29,4 @@ class Driver(metaclass=ABCMeta):
     def waitElementByDisplay(self, XPath):
         pass
 
+        
