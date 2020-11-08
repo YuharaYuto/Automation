@@ -4,6 +4,7 @@ from Driver import Driver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import TimeoutException,NoSuchElementException
 import time
 import os
 import signal
@@ -24,24 +25,47 @@ class DriverImple(Driver):
         pass
 
     def pushButton(self, XPath):
-        wait = WebDriverWait(self.driver, 10)
-        wait.until(EC.element_to_be_clickable((By.XPATH, XPath)))
-        button = self.driver.find_element_by_xpath(XPath)
-        button.click()
+        try:
+            wait = WebDriverWait(self.driver, 10)
+            wait.until(EC.element_to_be_clickable((By.XPATH, XPath)))
+            button = self.driver.find_element_by_xpath(XPath)
+            button.click()
+        except NoSuchElementException:
+            print("対象の要素が見つかりませんでした。")
+            raise Exception
+        except TimeoutException:
+            print("対象の要素が時間内に見つかりませんでした。")
+            raise Exception
         pass
 
     def inputInfo(self, XPath,info):
-        wait = WebDriverWait(self.driver, 10)
-        wait.until(EC.element_to_be_clickable((By.XPATH, XPath)))
-        inputBox = self.driver.find_element_by_xpath(XPath)
-        inputBox.send_keys(info)
+        try:
+            wait = WebDriverWait(self.driver, 10)
+            wait.until(EC.element_to_be_clickable((By.XPATH, XPath)))
+            inputBox = self.driver.find_element_by_xpath(XPath)
+            inputBox.send_keys(info)
+        except NoSuchElementException:
+            print("対象の要素が見つかりませんでした。")
+            raise Exception
+        except TimeoutException:
+            print("対象の要素が時間内に見つかりませんでした。")
+            raise Exception
+            pass
         pass
 
     def clearInfo(self,XPath):
-        wait = WebDriverWait(self.driver, 10)
-        wait.until(EC.element_to_be_clickable((By.XPATH, XPath)))
-        box = self.driver.find_element_by_xpath(XPath)
-        box.clear()
+        try:
+            wait = WebDriverWait(self.driver, 10)
+            wait.until(EC.element_to_be_clickable((By.XPATH, XPath)))
+            box = self.driver.find_element_by_xpath(XPath)
+            box.clear()
+        except NoSuchElementException:
+            print("対象の要素が見つかりませんでした。")
+            raise Exception
+        except TimeoutException:
+            print("対象の要素が時間内に見つかりませんでした。")
+            raise Exception
+            pass
 
     def closeBrowser(self):
         self.driver.close()
@@ -53,6 +77,15 @@ class DriverImple(Driver):
     def waitElementByDisplay(self, XPath):
         wait = WebDriverWait(self.driver, 180)
         wait.until(EC.element_to_be_clickable((By.XPATH, XPath)))
+        try:
+            wait = WebDriverWait(self.driver, 180)
+            wait.until(EC.element_to_be_clickable((By.XPATH, XPath)))
+        except NoSuchElementException:
+            print("対象の要素が見つかりませんでした。")
+            raise Exception
+        except TimeoutException:
+            print("対象の要素が時間内に見つかりませんでした。")
+            raise Exception
         pass
 
     def changeNextTab(self):

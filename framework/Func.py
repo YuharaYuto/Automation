@@ -21,9 +21,12 @@ class Func(metaclass=ABCMeta):
         pass
 
     def exec(self):
-        self.openPage()
-        self.doFunc()
-        self.closePage()
-        pass
+        try:
+            self.openPage()
+            self.doFunc()
+            self.closePage()
+            pass
+        except:
+            print("失敗しました。")
 
     
