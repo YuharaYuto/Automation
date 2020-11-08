@@ -17,3 +17,6 @@ class UserInterface():
 
     def end(self):
         print("終了しました。windowはそのまま残ります。")
+
+    def showMessage(self, message):
+        print(message)

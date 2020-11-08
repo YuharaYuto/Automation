@@ -24,16 +24,22 @@ class DriverImple(Driver):
         pass
 
     def pushButton(self, XPath):
+        wait = WebDriverWait(self.driver, 10)
+        wait.until(EC.element_to_be_clickable((By.XPATH, XPath)))
         button = self.driver.find_element_by_xpath(XPath)
         button.click()
         pass
 
     def inputInfo(self, XPath,info):
+        wait = WebDriverWait(self.driver, 10)
+        wait.until(EC.element_to_be_clickable((By.XPATH, XPath)))
         inputBox = self.driver.find_element_by_xpath(XPath)
         inputBox.send_keys(info)
         pass
 
     def clearInfo(self,XPath):
+        wait = WebDriverWait(self.driver, 10)
+        wait.until(EC.element_to_be_clickable((By.XPATH, XPath)))
         box = self.driver.find_element_by_xpath(XPath)
         box.clear()
 
@@ -46,7 +52,7 @@ class DriverImple(Driver):
     
     def waitElementByDisplay(self, XPath):
         wait = WebDriverWait(self.driver, 180)
-        element = wait.until(EC.element_to_be_clickable((By.XPATH, XPath)))
+        wait.until(EC.element_to_be_clickable((By.XPATH, XPath)))
         pass
 
     def changeNextTab(self):
