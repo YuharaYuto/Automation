@@ -10,8 +10,10 @@ class rakutenLogin(Func):
 
     def openPage(self):
         self.ui.start()
-        self.driver.access(self.url)
-        self.driver.waitElementByDisplay("/html/body/div[3]/div[2]/div/div[1]/div")
+        driver = self.driver
+        driver.access(self.url)
+        driver.pushButton("/html/body[@class='noneSmartphoneUserAgent']/section[@id='info_top']/div[@id='PRmodal']/div")
+        #driver.waitElementByDisplay("/html/body/div[3]/div[2]/div/div[1]/div")
         pass
 
     def closePage(self):
