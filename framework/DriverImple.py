@@ -7,18 +7,25 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException,NoSuchElementException
 from selenium.webdriver.common.alert import Alert
 from businessException import BusinessException
+import json
 import time
 import os
 import signal
+from pathlib import Path
 
 class DriverImple(Driver):
     def __init__(self):
+        current_dir = Path.cwd()
+        json_path = str(current_dir.parent) + "/settings.json"
+        json_file = open("settings.json","r")
+        json_data = json.load(json_file)
+
         options = Options()
         #options.add_argument('--headless')
         options.add_argument("--window-size=1920,1080")
         options.add_argument("--start-maximized")
         self.options = options
-        self.driver = webdriver.Chrome("/usr/local/bin/chromedriver",options=options)
+        self.driver = webdriver.Chrome(json_data["chromeDriverPath"],options=options)
 
     def access(self, url):
         driver = self.driver  #設定済みのdriverを格納。
