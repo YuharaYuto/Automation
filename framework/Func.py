@@ -1,6 +1,7 @@
 from abc import ABCMeta, abstractmethod
 from UserInterface import UserInterface
 from DriverImple import DriverImple
+from businessException import BusinessException
 
 class Func(metaclass=ABCMeta):
 
@@ -26,7 +27,8 @@ class Func(metaclass=ABCMeta):
             self.doFunc()
             self.closePage()
             pass
-        except:
+        except BusinessException as e:
+            print(e.message)
             print("失敗しました。")
 
     

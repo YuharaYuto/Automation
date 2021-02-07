@@ -25,7 +25,7 @@ class DriverImple(Driver):
         options.add_argument("--window-size=1920,1080")
         options.add_argument("--start-maximized")
         self.options = options
-        self.driver = webdriver.Chrome(json_data["chromeDriverPath"],options=options)
+        self.driver = webdriver.Chrome(str(current_dir.parent) + "/automation/chromedriver",options=options)
 
     def access(self, url):
         driver = self.driver  #設定済みのdriverを格納。
