@@ -29,4 +29,22 @@ class Driver(metaclass=ABCMeta):
     def waitElementByDisplay(self, XPath):
         pass
 
+    @abstractmethod
+    def acceptAlert(self):
+        pass
+
+    @abstractmethod
+    def changeNextTab(self):
+        pass
+
+    @abstractmethod
+    def changeLastTab(self):
+        pass
         
+    @abstractmethod
+    def executeScript(self, script):
+        pass
+
+    @abstractmethod
+    def getText(self, XPath):
+        pass
