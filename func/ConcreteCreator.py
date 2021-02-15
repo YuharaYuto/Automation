@@ -1,6 +1,5 @@
 import sys
 sys.path.append("./func/functions")
-
 from rakutenLogin import rakutenLogin
 
 
