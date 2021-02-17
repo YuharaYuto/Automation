@@ -14,7 +14,15 @@ import signal
 from pathlib import Path
 
 class DriverImple(Driver):
+    """Driver実装クラス
+    Driverクラスを実現するクラス。
+    Attributes:
+        driver(webdriver):chromeDriver
+    """
     def __init__(self):
+        """初期化
+        chromeDriver起動の設定を行う。
+        """
         current_dir = Path.cwd()
         json_path = str(current_dir.parent) + "/settings.json"
         json_file = open("settings.json","r")
@@ -28,12 +36,23 @@ class DriverImple(Driver):
         self.driver = webdriver.Chrome(str(current_dir.parent) + "/automation/chromedriver",options=options)
 
     def access(self, url):
+        """URLへのアクセス
+        Args:
+            url(String):アクセスしたいurl
+        """
         driver = self.driver  #設定済みのdriverを格納。
         driver.get(url)
         
         pass
 
     def pushButton(self, XPath):
+        """ボタンの押下
+        
+        Args:
+            Xpath(String):押下したいボタンのXpath
+        Raises:
+            BusinessException:対象のボタンが存在しない場合に発生
+        """
         for i in range(1,5):
             try:
                 wait = WebDriverWait(self.driver, 10)
@@ -53,6 +72,14 @@ class DriverImple(Driver):
         return
 
     def inputInfo(self, XPath,info):
+        """情報の入力
+        
+        Args:
+            Xpath(String):入力欄のXpath
+            info(String):入力したい文字列
+        Raises:
+            BusinessException:対象の入力欄が存在しない場合に発生
+        """
         for i in range(1,5):
             try:
                 wait = WebDriverWait(self.driver, 10)
@@ -72,6 +99,13 @@ class DriverImple(Driver):
         return
 
     def clearInfo(self,XPath):
+        """情報の消去
+        
+        Args:
+            Xpath(String):入力を消去したい欄のXpath
+        Raises:
+            BusinessException:入力欄が存在しない場合に発生
+        """
         for i in range(1,5):
             try:
                 wait = WebDriverWait(self.driver, 10)
@@ -91,6 +125,13 @@ class DriverImple(Driver):
         return
 
     def checkRadio(self, XPath):
+        """ラジオボタンのチェック
+        
+        Args:
+            Xpath(String):ラジオボタンのXpath
+        Raises:
+            BusinessException:対象のボタンが存在しない場合に発生
+        """
         for i in range(1,5):
             try:
                 wait = WebDriverWait(self.driver, 10)
@@ -115,13 +156,25 @@ class DriverImple(Driver):
 
 
     def closeBrowser(self):
+        """ブラウザを閉じる
+
+        """
         self.driver.close()
         pass
 
     def notCloseAndEnd(self):
+        """ブラウザを閉じずに、ブラウザを残したままseleniumから解放する。
+
+        """
         os.kill(self.driver.service.process.pid,signal.SIGTERM)
     
     def waitElementByDisplay(self, XPath):
+        """指定した要素が表示されるまで待機
+        Args:
+            Xpath(String):ラジオボタンのXpath
+        Raises:
+            BusinessException:対象の要素が40秒以上存在しない場合に発生
+        """
         for i in range(1,5):
             try:
                 wait = WebDriverWait(self.driver, 10)
@@ -139,6 +192,12 @@ class DriverImple(Driver):
         return
 
     def acceptAlert(self):
+        """指定した要素が表示されるまで待機
+        Args:
+            JavaScriptのアラートを受け入れる
+        Raises:
+            BusinessException:対象の要素が40秒以上存在しない場合に発生
+        """
         for i in range(1,5):
             try:
                 Alert(self.driver).accept()
@@ -150,6 +209,9 @@ class DriverImple(Driver):
         return
 
     def changeNextTab(self):
+        """次のタブに遷移する
+        
+        """
         for i in range(1,5):
             try:
                 handle_array = self.driver.window_handles
@@ -172,6 +234,9 @@ class DriverImple(Driver):
         return
         
     def changeLastTab(self):
+        """最後のタブに遷移する
+        
+        """
         for i in range(1,5):
             try:
                 handle_array = self.driver.window_handles
@@ -194,6 +259,12 @@ class DriverImple(Driver):
         return
 
     def executeScript(self, script):
+        """javascriptを実行する
+        Args:
+            Xpath(String):ラジオボタンのXpath
+        Raises:
+            BusinessException:対象の要素が40秒以上存在しない場合に発生
+        """
         for i in range(1,5):
             try:
                 self.driver.execute_script(script)
@@ -217,6 +288,12 @@ class DriverImple(Driver):
         
 
     def getText(self, Xpath):
+        """指定した要素の示す内容（文字列を取得）
+        Args:
+            Xpath(String):ラジオボタンのXpath
+        Raises:
+            BusinessException:対象の要素が40秒以上存在しない場合に発生
+        """
         for i in range(1,5):
             try:
                 res = self.driver.find_element_by_xpath(Xpath).text
