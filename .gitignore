@@ -129,10 +129,10 @@ dmypy.json
 .pyre/
 
 #ngate
-ngate_monthly.py
+#ngate_monthly.py
 
 #chrome driver
 chromedriver
 
-設計書.md
-sequence.pu
+#設計書.md
+#sequence.pu

@@ -1,0 +1,43 @@
+@startuml
+title automation
+actor User
+participant ConcreateCreator
+
+participant Func
+participant Driver
+participant UserInterface
+
+activate User
+create ConcreateCreator
+User -> ConcreateCreator:new
+User -> ConcreateCreator:selectFunc
+activate ConcreateCreator
+User <-- ConcreateCreator:funcName
+deactivate
+User -> ConcreateCreator:createFunc
+activate ConcreateCreator
+create Func
+ConcreateCreator -> Func:new
+activate Func
+Create Driver
+Func -> Driver:new
+Create UserInterface
+Func -> UserInterface:new
+deactivate Func
+
+User -> Func:exec
+activate Func
+Func -> Func:open
+Func -> Driver:use
+Func -> UserInterface:use
+Func -> Func:do
+Func -> Driver:use
+Func -> UserInterface:use
+Func -> Func:close
+Func -> Driver:use
+Func -> UserInterface:use
+deactivate Func
+deactivate ConcreateCreator
+deactivate User
+
+@enduml
