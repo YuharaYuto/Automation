@@ -6,12 +6,13 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException,NoSuchElementException
 from selenium.webdriver.common.alert import Alert
-from businessException import BusinessException
+from BusinessException import BusinessException
 import json
 import time
 import os
 import signal
 from pathlib import Path
+import traceback
 
 class DriverImple(Driver):
     """Driver実装クラス
@@ -178,7 +179,7 @@ class DriverImple(Driver):
         for i in range(1,5):
             try:
                 wait = WebDriverWait(self.driver, 10)
-                wait.until(EC.element_to_be_clickable((By.XPATH, XPath)))
+                wait.until(EC.presence_of_element_located((By.XPATH, XPath)))
             except NoSuchElementException:
                 if i == 4:
                     raise BusinessException("対象の要素" + XPath + "が見つかりませんでした。¥n")
